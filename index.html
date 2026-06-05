@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Security Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="status-summary">
+                <div class="status-icon safe-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <div class="check-mark">✓</div>
+                </div>
+                <div class="status-text">
+                    <h1>Analysis <br><span style="color: #666">In Progress...</span></h1>
+                </div>
+            </div>
+
+            <div class="confidence-badge">
+                <span class="score">--</span>
+                <span class="label">confidence</span>
+            </div>
+
+            <div class="meta-actions">
+                <button id="simulate-spam-btn" style="background: #1a73e8; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; margin-right: 5px; font-weight: bold;">Simulate Threat</button>
+                <button class="icon-btn settings-btn">⚙</button>
+                <div class="dropdown">Details ▾</div>
+                <button id="reanalyze-btn" class="icon-btn" title="Re-analyze Email" style="font-size: 16px;">🔄</button>
+            </div>
+        </header>
+
+        <!-- Summary / Spam Reasons (PROMOTED TO TOP) -->
+        <div class="analysis-summary" style="margin-bottom: 20px;">
+            Waiting for email analysis data...
+        </div>
+
+        <!-- Error Section -->
+        <div id="connection-error"
+            style="display:none; background: #fce8e6; border: 1px solid #d93025; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+            <div style="color: #d93025; font-weight: 700; font-size: 14px; margin-bottom: 5px;">⚠️ Connection Error
+            </div>
+            <p style="margin: 0; font-size: 12px; color: #666; line-height: 1.4;">
+                1. Ensure <strong>python backend/app.py</strong> is running.<br>
+                2. Reload the extension and <strong>refresh Gmail</strong>.
+            </p>
+            <button id="retry-btn"
+                style="margin-top: 10px; background: #d93025; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px;">Retry
+                Connection</button>
+        </div>
+
+        <!-- Details Container -->
+        <div id="flagged-section" style="display:none; margin-bottom: 15px;">
+            <div style="font-size:12px; font-weight:700; margin-bottom:5px;">⚠️ Flagged Keywords</div>
+            <div id="flagged-keywords-list" style="display:flex; flex-wrap:wrap; gap:5px;">
+                <!-- Keywords injected here -->
+            </div>
+        </div>
+
+        <!-- Risks List -->
+        <div class="risks-list">
+            <!-- Item 1 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Sender legitimacy and history</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Communication tone and urgency</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Credential/information requests</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Link/attachment patterns</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Language and formatting</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="risk-item">
+                <div class="risk-header">
+                    <span class="risk-title">Business context alignment</span>
+                    <span class="risk-impact impact-low">--</span>
+                </div>
+                <p class="risk-desc">Pending analysis...</p>
+            </div>
+        </div>
+
+    </div>
+    <div id="debug-console"
+        style="font-size: 10px; color: #666; padding: 10px; border-top: 1px solid #ddd; margin-top: 10px; font-family: monospace; display: flex; justify-content: space-between;">
+        <span id="status-msg">Status: Initializing...</span>
+        <span id="server-status" style="color: #666;">Server: Checking...</span>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
